@@ -1,0 +1,27 @@
+#components {
+  @media screen and (min-width: 1024px) {
+    padding: 1rem;
+  }
+}
+
+#components thead {
+  background-color: rgb(41, 110, 212);
+}
+
+#components tbody {
+  background-color: rgba(31, 58, 150, 0.363);
+}
+
+#components thead > tr {
+  font-family: monospace;
+}
+
+#components thead tr th {
+  padding: 0.25rem;
+  text-align: center;
+}
+
+#components tbody tr td {
+  padding: 0.25rem;
+  text-align: center;
+}
