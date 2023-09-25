@@ -1,5 +1,6 @@
 <script setup>
 import { request_overworld_crates } from './app_extras';
+import OverworldApp from './components/OverworldApp.vue';
 </script>
 
 <template>
@@ -80,6 +81,14 @@ import { request_overworld_crates } from './app_extras';
           </thead>
           <tbody id="component-list"></tbody>
         </table>
+
+        <h3>Things built with Overworld</h3>
+        <OverworldApp
+          url="https://github.com/liefland/overworld-demo-typegame"
+          name="Typing Game (demo)"
+          attribution="the Overworld team"
+        />
+        <!-- feel free to add your own items here -->
       </div>
 
       <div class="card shadow-blue">
