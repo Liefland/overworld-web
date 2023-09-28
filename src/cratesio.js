@@ -42,6 +42,7 @@ function normalize_overworld_crates(crates) {
   return filter_overworld_crates(crates).map((crate) => {
     return {
       name: crate.name,
+      crate: 'https://crates.io/crates/' + crate.name,
       homepage: crate.homepage,
       repository: crate.repository,
       description: crate.description,

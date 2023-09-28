@@ -12,12 +12,8 @@ export async function request_overworld_crates() {
 
     const name = document.createElement('td');
     name.classList.add('mono');
-    const repository_anchor = document.createElement('a');
-    repository_anchor.href = crate.repository;
-    repository_anchor.rel = 'noopener';
-    repository_anchor.target = '_blank';
-    repository_anchor.innerText = crate.name.replace('overworld_', '');
-    name.appendChild(repository_anchor);
+
+    anchor_link(crate.crate, crate.name.replace('overworld_', ''), name);
 
     const description = document.createElement('td');
     const description_p = document.createElement('p');
@@ -34,21 +30,26 @@ export async function request_overworld_crates() {
     downloads.classList.add('mono');
     downloads.innerHTML = new Intl.NumberFormat().format(Number(crate.downloads));
 
-    const documentation = document.createElement('td');
-    if (crate.documentation !== null) {
-      const documentation_anchor = document.createElement('a');
-      documentation_anchor.href = crate.repository;
-      documentation_anchor.rel = 'noopener';
-      documentation_anchor.target = '_blank';
-      documentation_anchor.innerText = 'Documentation';
-      documentation.appendChild(documentation_anchor);
+    const links = document.createElement('td');
+    const to_link = [
+      { href: crate.repository, name: 'Repository' },
+      { href: crate.documentation, name: 'Documentation' },
+    ];
+
+    for (const link of to_link) {
+      if (!link.href) {
+        continue;
+      }
+
+      anchor_link(link.href, link.name, links);
+      links.appendChild(document.createElement('br'));
     }
 
     row.appendChild(name);
     row.appendChild(version);
     row.appendChild(downloads);
     row.appendChild(description);
-    row.appendChild(documentation);
+    row.appendChild(links);
 
     component_list.appendChild(row);
   });
@@ -57,4 +58,15 @@ export async function request_overworld_crates() {
 
   const table = document.querySelector('#components');
   table.classList.remove('hidden');
+}
+
+function anchor_link(href, text, append_to) {
+  const anchor = document.createElement('a');
+
+  anchor.href = href;
+  anchor.rel = 'noopener';
+  anchor.target = '_blank';
+  anchor.innerText = text;
+
+  append_to.appendChild(anchor);
 }
