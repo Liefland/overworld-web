@@ -33,7 +33,10 @@ export async function request_overworld_crates() {
     const links = document.createElement('td');
     const to_link = [
       { href: crate.repository, name: 'Repository' },
-      { href: crate.documentation, name: 'Documentation' },
+      {
+        href: crate.documentation || `https://docs.rs/${crate.name}/${crate.version}/`,
+        name: 'Documentation',
+      },
     ];
 
     for (const link of to_link) {
